@@ -17,7 +17,6 @@ import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.Card
 import androidx.compose.material.ContentAlpha
 import androidx.compose.material.LocalContentAlpha
-import androidx.compose.material.LocalContentColor
 import androidx.compose.material.LocalTextStyle
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
@@ -31,13 +30,15 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import ca.josuelubaki.profilecard.ui.theme.LightGreen200
 import ca.josuelubaki.profilecard.ui.theme.ProfileCardTheme
+import ca.josuelubaki.profilecard.ui.theme.lightGreen
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            ProfileCardTheme {
+            ProfileCardTheme(darkTheme = false) {
                 // A surface container using the 'background' color from the theme
                 Surface(
                     modifier = Modifier.fillMaxSize(),
@@ -59,7 +60,6 @@ fun Greeting(name: String) {
 fun MainScreen() {
     Surface(
         modifier = Modifier.fillMaxSize(),
-        color = Color.LightGray
     ) {
         ProfileCard()
     }
@@ -72,7 +72,8 @@ fun ProfileCard() {
             .padding(16.dp)
             .fillMaxWidth()
             .wrapContentHeight(align = Alignment.Top),
-        elevation = 8.dp
+        elevation = 8.dp,
+        backgroundColor = Color.White,
     ) {
         Row(
             modifier = Modifier.fillMaxWidth(),
@@ -89,7 +90,7 @@ fun ProfileCard() {
 fun ProfilePicture() {
     Card(
         shape = CircleShape,
-        border= BorderStroke(width = 2.dp, color =  Color.Green),
+        border= BorderStroke(width = 2.dp, color = MaterialTheme.colors.lightGreen),
         modifier = Modifier.padding(16.dp),
         elevation = 4.dp
     ) {
@@ -125,10 +126,10 @@ fun ProfileContent() {
    }
 }
 
-@Preview(showBackground = true)
+@Preview(showBackground = false)
 @Composable
 fun DefaultPreview() {
-    ProfileCardTheme {
+    ProfileCardTheme(darkTheme = false) {
         MainScreen()
     }
 }
