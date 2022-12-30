@@ -6,6 +6,7 @@ import androidx.activity.compose.setContent
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -14,10 +15,15 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.Card
+import androidx.compose.material.ContentAlpha
+import androidx.compose.material.LocalContentAlpha
+import androidx.compose.material.LocalContentColor
+import androidx.compose.material.LocalTextStyle
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -98,7 +104,25 @@ fun ProfilePicture() {
 
 @Composable
 fun ProfileContent() {
-    Text(text = "John Doe")
+   Column(
+       modifier = Modifier
+           .padding(8.dp)
+           .fillMaxWidth()
+   ) {
+       Text(
+           text = "John Doe",
+           style = MaterialTheme.typography.h5
+       )
+
+       CompositionLocalProvider(
+           LocalTextStyle provides MaterialTheme.typography.body2,
+           LocalContentAlpha provides ContentAlpha.medium
+       ) {
+           Text(
+               text = "Active now",
+           )
+       }
+   }
 }
 
 @Preview(showBackground = true)
