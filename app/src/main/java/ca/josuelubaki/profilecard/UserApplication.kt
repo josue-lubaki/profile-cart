@@ -1,9 +1,11 @@
 package ca.josuelubaki.profilecard
 
 import androidx.compose.runtime.Composable
+import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import androidx.navigation.navArgument
 import ca.josuelubaki.profilecard.Page.USERS_LIST
 import ca.josuelubaki.profilecard.Page.USER_PROFILE_DETAILS
 import ca.josuelubaki.profilecard.pages.UserListPage
@@ -19,8 +21,11 @@ fun UserNavigation(usersList : List<UserProfile> = userProfileList) {
         composable(route= USERS_LIST) {
             UserListPage(usersList, navController)
         }
-        composable(route= USER_PROFILE_DETAILS) {
-            UserProfileDetailsPage()
+        composable(
+            route= "$USER_PROFILE_DETAILS/{userId}",
+            arguments = listOf(navArgument("userId") { type = NavType.IntType })
+        ) { navBackStackEntry ->
+            UserProfileDetailsPage(navBackStackEntry.arguments!!.getInt("userId"))
         }
     }
 }
