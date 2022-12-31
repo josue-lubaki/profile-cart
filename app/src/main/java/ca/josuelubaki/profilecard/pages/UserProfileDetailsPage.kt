@@ -2,7 +2,6 @@ package ca.josuelubaki.profilecard.pages
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -13,12 +12,10 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import ca.josuelubaki.profilecard.AppBar
-import ca.josuelubaki.profilecard.ProfileCard
-import ca.josuelubaki.profilecard.ProfileContent
-import ca.josuelubaki.profilecard.ProfilePicture
-import ca.josuelubaki.profilecard.UserListPage
 import ca.josuelubaki.profilecard.UserProfile
+import ca.josuelubaki.profilecard.components.AppBar
+import ca.josuelubaki.profilecard.components.ProfileContent
+import ca.josuelubaki.profilecard.components.ProfilePicture
 import ca.josuelubaki.profilecard.ui.theme.ProfileCardTheme
 import ca.josuelubaki.profilecard.userProfileList
 

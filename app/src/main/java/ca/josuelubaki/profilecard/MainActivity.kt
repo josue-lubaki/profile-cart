@@ -37,6 +37,7 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
+import ca.josuelubaki.profilecard.pages.UserListPage
 import ca.josuelubaki.profilecard.ui.theme.ProfileCardTheme
 import ca.josuelubaki.profilecard.ui.theme.lightGreen
 import coil.compose.rememberAsyncImagePainter
@@ -57,132 +58,15 @@ class MainActivity : ComponentActivity() {
     }
 }
 
+@Preview
 @Composable
-fun UserListPage(usersList : List<UserProfile> = userProfileList) {
-    Scaffold(
-        topBar = { AppBar() }
-    ) { paddingValues ->
-        Surface(
-            modifier = Modifier
-                .fillMaxSize()
-                .padding(paddingValues)
-        ) {
-           LazyColumn(content = {
-               items(usersList){
-                   ProfileCard(it)
-               }
-           })
-        }
-    }
-}
-
-@Composable
-fun AppBar() {
-    TopAppBar(
-        navigationIcon = {
-            Icon(
-                imageVector = Icons.Default.Home,
-                contentDescription = "Home",
-                modifier = Modifier.padding(12.dp)
-            )
-         },
-        title = { Text("Application Users")}
-    )
-}
-
-@Composable
-fun ProfileCard(userProfile : UserProfile) {
-    Card(
-        modifier = Modifier
-            .padding(top = 8.dp, bottom = 4.dp, start = 16.dp, end = 16.dp)
-            .fillMaxWidth()
-            .wrapContentHeight(align = Alignment.Top),
-        elevation = 8.dp,
-        backgroundColor = Color.White,
-    ) {
-        val (name, status, pictureUrl) = userProfile
-        Row(
-            modifier = Modifier.fillMaxWidth(),
-            verticalAlignment = Alignment.CenterVertically,
-            horizontalArrangement = Arrangement.Start
-        ) {
-            ProfilePicture(pictureUrl, status)
-            ProfileContent(name, status)
-        }
-    }
-}
-
-@Composable
-fun ProfilePicture(pictureUrl : String, onlineStatus : Boolean, imageSize : Dp = 72.dp) {
-    Card(
-        shape = CircleShape,
-        border= BorderStroke(
-            width = 2.dp,
-            color =
-                if(onlineStatus)
-                    MaterialTheme.colors.lightGreen
-                else Color.Red),
-        modifier = Modifier.padding(16.dp),
-        elevation = 4.dp
-    ) {
-
-        Image(
-            painter = rememberAsyncImagePainter(pictureUrl),
-            contentDescription = "Profile Picture",
-            modifier = Modifier.size(imageSize),
-            contentScale = ContentScale.Crop,
-        )
-
-        /* AsyncImage(
-            model = ImageRequest.Builder(LocalContext.current)
-                .data(pictureUrl)
-                .crossfade(true)
-                .build(),
-            placeholder = painterResource(R.drawable.profile_woman),
-            contentDescription = "Profile Picture",
-            contentScale = ContentScale.Crop,
-            modifier = Modifier.size(72.dp).clip(CircleShape)
-        ) */
-    }
-}
-
-@Composable
-fun ProfileContent(
-    userName : String,
-    onlineStatus : Boolean,
-    horizontalAlignment : Alignment.Horizontal = Alignment.Start
-) {
-   Column(
-       modifier = Modifier
-           .padding(8.dp),
-       horizontalAlignment = horizontalAlignment
-   ) {
-       CompositionLocalProvider(
-           LocalContentAlpha provides
-                   if(onlineStatus) ContentAlpha.high
-                   else ContentAlpha.medium
-       ) {
-           Text(
-               text = userName,
-               style = MaterialTheme.typography.h5
-           )
-       }
-
-       CompositionLocalProvider(
-           LocalTextStyle provides MaterialTheme.typography.body2,
-           LocalContentAlpha provides ContentAlpha.medium
-       ) {
-           Text(
-               text = if (onlineStatus) "Active now" else "Offline",
-           )
-       }
-   }
-}
-
-@Preview(showBackground = false)
-@Composable
-fun DefaultPreview() {
+fun AppPreview() {
     ProfileCardTheme(darkTheme = false) {
-        UserListPage()
+        Surface(
+            modifier = Modifier.fillMaxSize(),
+            color = MaterialTheme.colors.background
+        ) {
+            UserListPage()
+        }
     }
 }
