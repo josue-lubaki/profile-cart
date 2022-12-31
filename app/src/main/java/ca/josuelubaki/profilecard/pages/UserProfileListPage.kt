@@ -4,6 +4,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Scaffold
 import androidx.compose.material.Surface
 import androidx.compose.runtime.Composable
@@ -26,14 +27,15 @@ fun UserListPage(usersList : List<UserProfile>, navController : NavHostControlle
         Surface(
             modifier = Modifier
                 .fillMaxSize()
-                .padding(paddingValues)
+                .padding(paddingValues),
+            color = MaterialTheme.colors.background
         ) {
             LazyColumn(content = {
-                items(usersList){
+                items(usersList){userProfile ->
                     ProfileCard(
-                        userProfile = it,
+                        userProfile = userProfile,
                         clickAction = {
-                            navController?.navigate(USER_PROFILE_DETAILS)
+                            navController?.navigate("$USER_PROFILE_DETAILS/${userProfile.id}")
                         }
                     )
                 }
@@ -42,10 +44,10 @@ fun UserListPage(usersList : List<UserProfile>, navController : NavHostControlle
     }
 }
 
-@Preview(showBackground = false)
+@Preview(showBackground = true)
 @Composable
 fun UserListPagePreview() {
-    ProfileCardTheme(darkTheme = false) {
+    ProfileCardTheme {
         UserListPage(usersList = userProfileList, navController = null)
     }
 }

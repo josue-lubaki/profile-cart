@@ -21,7 +21,7 @@ import ca.josuelubaki.profilecard.userProfileList
 
 
 @Composable
-fun UserProfileDetailsPage(userProfile : UserProfile = userProfileList[0]) {
+fun UserProfileDetailsPage(userId : Int) {
     Scaffold(
         topBar = { AppBar() }
     ) { paddingValues ->
@@ -30,7 +30,8 @@ fun UserProfileDetailsPage(userProfile : UserProfile = userProfileList[0]) {
                 .fillMaxSize()
                 .padding(paddingValues)
         ) {
-            val (name, status, pictureUrl) = userProfile
+            val userProfile = userProfileList.first { userProfile -> userProfile.id == userId }
+            val (_, name, status, pictureUrl) = userProfile
             Column(
                 modifier = Modifier.fillMaxWidth(),
                 horizontalAlignment = Alignment.CenterHorizontally,
@@ -43,10 +44,10 @@ fun UserProfileDetailsPage(userProfile : UserProfile = userProfileList[0]) {
     }
 }
 
-@Preview(showBackground = false)
+@Preview(showBackground = true)
 @Composable
 fun UserProfileDetailsPagePreview() {
-    ProfileCardTheme(darkTheme = false) {
-        UserProfileDetailsPage()
+    ProfileCardTheme {
+        UserProfileDetailsPage(userId = 1)
     }
 }

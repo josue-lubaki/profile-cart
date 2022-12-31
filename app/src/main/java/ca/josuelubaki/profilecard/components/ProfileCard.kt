@@ -3,6 +3,7 @@ package ca.josuelubaki.profilecard.components
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -43,9 +44,12 @@ fun ProfileCard(userProfile : UserProfile, clickAction : () -> Unit) {
                 onClickLabel = "Click to see user details"
             ),
         elevation = 8.dp,
-        backgroundColor = Color.White,
+        backgroundColor = MaterialTheme.colors.surface,
+        border = if(!isSystemInDarkTheme())
+                    BorderStroke(0.5.dp, MaterialTheme.colors.onBackground)
+                else null,
     ) {
-        val (name, status, pictureUrl) = userProfile
+        val (_id, name, status, pictureUrl) = userProfile
         Row(
             modifier = Modifier.fillMaxWidth(),
             verticalAlignment = Alignment.CenterVertically,

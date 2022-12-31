@@ -46,7 +46,7 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            ProfileCardTheme(darkTheme = false) {
+            ProfileCardTheme {
                 Surface(
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colors.background
@@ -61,7 +61,7 @@ class MainActivity : ComponentActivity() {
 @Preview
 @Composable
 fun AppPreview() {
-    ProfileCardTheme(darkTheme = false) {
+    ProfileCardTheme {
         Surface(
             modifier = Modifier.fillMaxSize(),
             color = MaterialTheme.colors.background
