@@ -9,6 +9,8 @@ import androidx.compose.material.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.navigation.NavHostController
+import ca.josuelubaki.profilecard.Page.USER_PROFILE_DETAILS
 import ca.josuelubaki.profilecard.UserProfile
 import ca.josuelubaki.profilecard.components.AppBar
 import ca.josuelubaki.profilecard.components.ProfileCard
@@ -17,7 +19,7 @@ import ca.josuelubaki.profilecard.userProfileList
 
 
 @Composable
-fun UserListPage(usersList : List<UserProfile> = userProfileList) {
+fun UserListPage(usersList : List<UserProfile>, navController : NavHostController?) {
     Scaffold(
         topBar = { AppBar() }
     ) { paddingValues ->
@@ -28,7 +30,12 @@ fun UserListPage(usersList : List<UserProfile> = userProfileList) {
         ) {
             LazyColumn(content = {
                 items(usersList){
-                    ProfileCard(it)
+                    ProfileCard(
+                        userProfile = it,
+                        clickAction = {
+                            navController?.navigate(USER_PROFILE_DETAILS)
+                        }
+                    )
                 }
             })
         }
@@ -39,6 +46,6 @@ fun UserListPage(usersList : List<UserProfile> = userProfileList) {
 @Composable
 fun UserListPagePreview() {
     ProfileCardTheme(darkTheme = false) {
-        UserListPage()
+        UserListPage(usersList = userProfileList, navController = null)
     }
 }

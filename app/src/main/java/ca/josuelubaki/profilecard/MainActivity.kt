@@ -51,7 +51,7 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colors.background
                 ) {
-                    UserListPage()
+                    UserNavigation()
                 }
             }
         }
@@ -66,7 +66,7 @@ fun AppPreview() {
             modifier = Modifier.fillMaxSize(),
             color = MaterialTheme.colors.background
         ) {
-            UserListPage()
+            UserNavigation()
         }
     }
 }
