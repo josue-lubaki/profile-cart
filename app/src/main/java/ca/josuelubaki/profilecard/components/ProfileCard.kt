@@ -2,6 +2,7 @@ package ca.josuelubaki.profilecard.components
 
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -15,6 +16,7 @@ import androidx.compose.material.ContentAlpha
 import androidx.compose.material.LocalContentAlpha
 import androidx.compose.material.LocalTextStyle
 import androidx.compose.material.MaterialTheme
+import androidx.compose.material.SnackbarDefaults.backgroundColor
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
@@ -30,12 +32,16 @@ import coil.compose.rememberAsyncImagePainter
 
 
 @Composable
-fun ProfileCard(userProfile : UserProfile) {
+fun ProfileCard(userProfile : UserProfile, clickAction : () -> Unit) {
     Card(
         modifier = Modifier
             .padding(top = 8.dp, bottom = 4.dp, start = 16.dp, end = 16.dp)
             .fillMaxWidth()
-            .wrapContentHeight(align = Alignment.Top),
+            .wrapContentHeight(align = Alignment.Top)
+            .clickable(
+                onClick = { clickAction.invoke() },
+                onClickLabel = "Click to see user details"
+            ),
         elevation = 8.dp,
         backgroundColor = Color.White,
     ) {
