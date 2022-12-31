@@ -15,7 +15,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
-import ca.josuelubaki.profilecard.UserProfile
 import ca.josuelubaki.profilecard.components.AppBar
 import ca.josuelubaki.profilecard.components.ProfileContent
 import ca.josuelubaki.profilecard.components.ProfilePicture

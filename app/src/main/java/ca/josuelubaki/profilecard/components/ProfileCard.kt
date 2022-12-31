@@ -17,7 +17,6 @@ import androidx.compose.material.ContentAlpha
 import androidx.compose.material.LocalContentAlpha
 import androidx.compose.material.LocalTextStyle
 import androidx.compose.material.MaterialTheme
-import androidx.compose.material.SnackbarDefaults.backgroundColor
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
@@ -46,10 +45,10 @@ fun ProfileCard(userProfile : UserProfile, clickAction : () -> Unit) {
         elevation = 8.dp,
         backgroundColor = MaterialTheme.colors.surface,
         border = if(!isSystemInDarkTheme())
-                    BorderStroke(0.5.dp, MaterialTheme.colors.onBackground)
+                    BorderStroke(0.75.dp, MaterialTheme.colors.onBackground)
                 else null,
     ) {
-        val (_id, name, status, pictureUrl) = userProfile
+        val (_, name, status, pictureUrl) = userProfile
         Row(
             modifier = Modifier.fillMaxWidth(),
             verticalAlignment = Alignment.CenterVertically,
@@ -119,7 +118,7 @@ fun ProfileContent(
 
         CompositionLocalProvider(
             LocalTextStyle provides MaterialTheme.typography.body2,
-            LocalContentAlpha provides ContentAlpha.medium
+            LocalContentAlpha provides ContentAlpha.disabled
         ) {
             Text(
                 text = if (onlineStatus) "Active now" else "Offline",
