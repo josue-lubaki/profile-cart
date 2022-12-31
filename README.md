@@ -12,16 +12,17 @@ A simple application to display the list of profiles
 [![Profile](https://videoapi-muybridge.vimeocdn.com/animated-thumbnails/image/f7b3b9d9-3bed-423b-a079-694381a87ab9.gif?ClientID=vimeo-core-prod&Date=1672470745&Signature=2e52815ec327a2868bc44ade5a40773bcd915369)](https://videoapi-muybridge.vimeocdn.com/animated-thumbnails/image/f7b3b9d9-3bed-423b-a079-694381a87ab9.gif?ClientID=vimeo-core-prod&Date=1672470745&Signature=2e52815ec327a2868bc44ade5a40773bcd915369 "Light Mode")
 
 <p>
-
+	<br />
+	<br />
 </p>
 
 ## Dark Mode
-Sorry for the quality, my video flashes a bit
 
-[![Profile](https://videoapi-muybridge.vimeocdn.com/animated-thumbnails/image/e42d2acc-3c43-4c2e-aebd-3bad712e303e.gif?ClientID=vimeo-core-prod&Date=1672470888&Signature=0ebea00eb9aa2394ad2a20869aa5e6043e33695c)](https://videoapi-muybridge.vimeocdn.com/animated-thumbnails/image/e42d2acc-3c43-4c2e-aebd-3bad712e303e.gif?ClientID=vimeo-core-prod&Date=1672470888&Signature=0ebea00eb9aa2394ad2a20869aa5e6043e33695c "Dark Mode")
+[![Profile](https://videoapi-muybridge.vimeocdn.com/animated-thumbnails/image/97cd0516-de58-4a3b-ac5d-503779246004.gif?ClientID=vimeo-core-prod&Date=1672473746&Signature=0b2c7b4ad61c120b869bf6c90ce7651173277184)](https://videoapi-muybridge.vimeocdn.com/animated-thumbnails/image/97cd0516-de58-4a3b-ac5d-503779246004.gif?ClientID=vimeo-core-prod&Date=1672473746&Signature=0b2c7b4ad61c120b869bf6c90ce7651173277184 "Dark Mode")
 
 <p>
-
+	<br />
+	<br />
 </p>
 
 ## Screenshots
@@ -44,7 +45,10 @@ Sorry for the quality, my video flashes a bit
         <td> <img src="https://i.imgur.com/CT7xkBv.png" width=360 height=760 /></td>
     </tr>
 </table>
-
-credits :
+<p>
+	<br />
+	<br />
+</p>
+credit :
 
 * [Course on Udemy](https://www.udemy.com/course/jetpack-compose-masterclass/)
