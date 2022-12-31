@@ -25,7 +25,7 @@ fun UserNavigation(usersList : List<UserProfile> = userProfileList) {
             route= "$USER_PROFILE_DETAILS/{userId}",
             arguments = listOf(navArgument("userId") { type = NavType.IntType })
         ) { navBackStackEntry ->
-            UserProfileDetailsPage(navBackStackEntry.arguments!!.getInt("userId"))
+            UserProfileDetailsPage(navBackStackEntry.arguments!!.getInt("userId"), navController)
         }
     }
 }
