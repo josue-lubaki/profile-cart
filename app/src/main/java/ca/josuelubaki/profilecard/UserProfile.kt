@@ -36,7 +36,7 @@ val userProfileList = arrayListOf(
     UserProfile(
         id = 5,
         name = "Anichu Patel",
-        status = false,
+        status = true,
         "https://images.unsplash.com/photo-1598641795816-a84ac9eac40c?ixid=MXwxMjA3fDB8MHxzZWFyY2h8NjJ8fHBvcnRyYWl0fGVufDB8MnwwfA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60"
     ),
     UserProfile(
@@ -59,7 +59,7 @@ val userProfileList = arrayListOf(
     UserProfile(
         id = 9,
         name = "Matt Dengo",
-        status = false,
+        status = true,
         "https://images.unsplash.com/photo-1578176603894-57973e38890f?ixid=MXwxMjA3fDB8MHxzZWFyY2h8MTE0fHxwb3J0cmFpdHxlbnwwfDJ8MHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60"
     ),
     UserProfile(
@@ -77,7 +77,7 @@ val userProfileList = arrayListOf(
     UserProfile(
         id = 12,
         name = "Braylen Nathan",
-        status = true,
+        status = false,
         "https://images.unsplash.com/photo-1605857840732-188f2f08cb31?ixid=MXwxMjA3fDB8MHxzZWFyY2h8MTQ5fHxwb3J0cmFpdHxlbnwwfDJ8MHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60"
     ),
     UserProfile(
@@ -89,7 +89,7 @@ val userProfileList = arrayListOf(
     UserProfile(
         id = 14,
         name = "Jamison Dana",
-        status = false,
+        status = true,
         "https://images.unsplash.com/photo-1513690277738-c9bc7eb2a992?ixid=MXwxMjA3fDB8MHxzZWFyY2h8MTY1fHxwb3J0cmFpdHxlbnwwfDJ8MHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60"
     ),
     UserProfile(
