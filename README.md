@@ -32,21 +32,19 @@ Sorry for the quality, my video flashes a bit
         <th align="center"> Dark Mode </th>
     </tr>
     <tr>
-        <td> <img src="https://i.imgur.com/78xW6ee.png" width=360 height=640 /> </td>
-        <td> <img src="https://i.imgur.com/pxG24wV.png" width=360 height=640 /></td>
+        <td> <img src="https://i.imgur.com/78xW6ee.png" width=360 height=760 /> </td>
+        <td> <img src="https://i.imgur.com/pxG24wV.png" width=360 height=760 /></td>
     </tr>
 	<tr>
 	 	<th> </th>
         <th> </th>
 	</tr>
     <tr>
-        <td> <img src="https://i.imgur.com/E8vzhvh.png" width=360 height=640 /></td>
-        <td> <img src="https://i.imgur.com/CT7xkBv.png" width=360 height=640 /></td>
+        <td> <img src="https://i.imgur.com/E8vzhvh.png" width=360 height=760 /></td>
+        <td> <img src="https://i.imgur.com/CT7xkBv.png" width=360 height=760 /></td>
     </tr>
 </table>
 
-## Architecture
-<img src="https://i.imgur.com/v5EiM83.jpg" width="500">
 credits :
 
 * [Course on Udemy](https://www.udemy.com/course/jetpack-compose-masterclass/)
