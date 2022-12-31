@@ -34,13 +34,12 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import ca.josuelubaki.profilecard.ui.theme.ProfileCardTheme
 import ca.josuelubaki.profilecard.ui.theme.lightGreen
 import coil.compose.rememberAsyncImagePainter
-import coil.request.ImageRequest
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -51,7 +50,7 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colors.background
                 ) {
-                    MainScreen()
+                    UserListPage()
                 }
             }
         }
@@ -59,7 +58,7 @@ class MainActivity : ComponentActivity() {
 }
 
 @Composable
-fun MainScreen(usersList : List<UserProfile> = userProfileList) {
+fun UserListPage(usersList : List<UserProfile> = userProfileList) {
     Scaffold(
         topBar = { AppBar() }
     ) { paddingValues ->
@@ -93,8 +92,6 @@ fun AppBar() {
 
 @Composable
 fun ProfileCard(userProfile : UserProfile) {
-    val (name, status, pictureUrl) = userProfile
-
     Card(
         modifier = Modifier
             .padding(top = 8.dp, bottom = 4.dp, start = 16.dp, end = 16.dp)
@@ -103,6 +100,7 @@ fun ProfileCard(userProfile : UserProfile) {
         elevation = 8.dp,
         backgroundColor = Color.White,
     ) {
+        val (name, status, pictureUrl) = userProfile
         Row(
             modifier = Modifier.fillMaxWidth(),
             verticalAlignment = Alignment.CenterVertically,
@@ -115,7 +113,7 @@ fun ProfileCard(userProfile : UserProfile) {
 }
 
 @Composable
-fun ProfilePicture(pictureUrl : String, onlineStatus : Boolean) {
+fun ProfilePicture(pictureUrl : String, onlineStatus : Boolean, imageSize : Dp = 72.dp) {
     Card(
         shape = CircleShape,
         border= BorderStroke(
@@ -131,7 +129,7 @@ fun ProfilePicture(pictureUrl : String, onlineStatus : Boolean) {
         Image(
             painter = rememberAsyncImagePainter(pictureUrl),
             contentDescription = "Profile Picture",
-            modifier = Modifier.size(72.dp),
+            modifier = Modifier.size(imageSize),
             contentScale = ContentScale.Crop,
         )
 
@@ -149,11 +147,15 @@ fun ProfilePicture(pictureUrl : String, onlineStatus : Boolean) {
 }
 
 @Composable
-fun ProfileContent(userName : String, onlineStatus : Boolean) {
+fun ProfileContent(
+    userName : String,
+    onlineStatus : Boolean,
+    horizontalAlignment : Alignment.Horizontal = Alignment.Start
+) {
    Column(
        modifier = Modifier
-           .padding(8.dp)
-           .fillMaxWidth()
+           .padding(8.dp),
+       horizontalAlignment = horizontalAlignment
    ) {
        CompositionLocalProvider(
            LocalContentAlpha provides
@@ -181,6 +183,6 @@ fun ProfileContent(userName : String, onlineStatus : Boolean) {
 @Composable
 fun DefaultPreview() {
     ProfileCardTheme(darkTheme = false) {
-        MainScreen()
+        UserListPage()
     }
 }
