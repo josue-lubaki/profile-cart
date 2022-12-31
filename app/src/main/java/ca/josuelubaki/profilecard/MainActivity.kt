@@ -13,6 +13,8 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.wrapContentHeight
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.Card
 import androidx.compose.material.ContentAlpha
@@ -43,7 +45,6 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             ProfileCardTheme(darkTheme = false) {
-                // A surface container using the 'background' color from the theme
                 Surface(
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colors.background
@@ -56,21 +57,20 @@ class MainActivity : ComponentActivity() {
 }
 
 @Composable
-fun Greeting(name: String) {
-    Text(text = "Hello $name!")
-}
-
-@Composable
-fun MainScreen() {
+fun MainScreen(usersList : List<UserProfile> = userProfileList) {
     Scaffold(
         topBar = { AppBar() }
-    ) {
+    ) { paddingValues ->
         Surface(
             modifier = Modifier
                 .fillMaxSize()
-                .padding(it),
+                .padding(paddingValues)
         ) {
-            ProfileCard()
+           LazyColumn(content = {
+               items(usersList){
+                   ProfileCard(it)
+               }
+           })
         }
     }
 }
@@ -90,10 +90,12 @@ fun AppBar() {
 }
 
 @Composable
-fun ProfileCard() {
+fun ProfileCard(userProfile : UserProfile) {
+    val (name, status, drawable) = userProfile
+
     Card(
         modifier = Modifier
-            .padding(16.dp)
+            .padding(top = 8.dp, bottom = 4.dp, start = 16.dp, end = 16.dp)
             .fillMaxWidth()
             .wrapContentHeight(align = Alignment.Top),
         elevation = 8.dp,
@@ -104,22 +106,27 @@ fun ProfileCard() {
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.Start
         ) {
-            ProfilePicture()
-            ProfileContent()
+            ProfilePicture(drawable, status)
+            ProfileContent(name, status)
         }
     }
 }
 
 @Composable
-fun ProfilePicture() {
+fun ProfilePicture(drawableId : Int, onlineStatus : Boolean) {
     Card(
         shape = CircleShape,
-        border= BorderStroke(width = 2.dp, color = MaterialTheme.colors.lightGreen),
+        border= BorderStroke(
+            width = 2.dp,
+            color =
+                if(onlineStatus)
+                    MaterialTheme.colors.lightGreen
+                else Color.Red),
         modifier = Modifier.padding(16.dp),
         elevation = 4.dp
     ) {
         Image(
-            painter = painterResource(id = R.drawable.profile_image),
+            painter = painterResource(id = drawableId),
             contentDescription = "content description",
             modifier = Modifier.size(72.dp),
             contentScale = ContentScale.Crop
@@ -128,23 +135,29 @@ fun ProfilePicture() {
 }
 
 @Composable
-fun ProfileContent() {
+fun ProfileContent(userName : String, onlineStatus : Boolean) {
    Column(
        modifier = Modifier
            .padding(8.dp)
            .fillMaxWidth()
    ) {
-       Text(
-           text = "John Doe",
-           style = MaterialTheme.typography.h5
-       )
+       CompositionLocalProvider(
+           LocalContentAlpha provides
+                   if(onlineStatus) ContentAlpha.high
+                   else ContentAlpha.medium
+       ) {
+           Text(
+               text = userName,
+               style = MaterialTheme.typography.h5
+           )
+       }
 
        CompositionLocalProvider(
            LocalTextStyle provides MaterialTheme.typography.body2,
            LocalContentAlpha provides ContentAlpha.medium
        ) {
            Text(
-               text = "Active now",
+               text = if (onlineStatus) "Active now" else "Offline",
            )
        }
    }
