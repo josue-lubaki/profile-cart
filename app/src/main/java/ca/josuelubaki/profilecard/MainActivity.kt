@@ -1,6 +1,7 @@
 package ca.josuelubaki.profilecard
 
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.BorderStroke
@@ -32,13 +33,20 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import ca.josuelubaki.profilecard.ui.theme.ProfileCardTheme
 import ca.josuelubaki.profilecard.ui.theme.lightGreen
+import coil.compose.AsyncImage
+import coil.compose.AsyncImagePainter.State.Empty.painter
+import coil.compose.rememberAsyncImagePainter
+import coil.request.ImageRequest
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -125,12 +133,24 @@ fun ProfilePicture(drawableId : Int, onlineStatus : Boolean) {
         modifier = Modifier.padding(16.dp),
         elevation = 4.dp
     ) {
+
         Image(
-            painter = painterResource(id = drawableId),
-            contentDescription = "content description",
+            painter = rememberAsyncImagePainter(drawableId),
+            contentDescription = "Profile Picture",
             modifier = Modifier.size(72.dp),
-            contentScale = ContentScale.Crop
+            contentScale = ContentScale.Crop,
         )
+
+//        AsyncImage(
+//            model = ImageRequest.Builder(LocalContext.current)
+//                .data("https://example.com/image.jpg")
+//                .crossfade(true)
+//                .build(),
+//            placeholder = painterResource(R.drawable.profile_boy),
+//            contentDescription = "Profile Picture",
+//            contentScale = ContentScale.Crop,
+//            modifier = Modifier.size(72.dp).clip(CircleShape)
+//        )
     }
 }
 

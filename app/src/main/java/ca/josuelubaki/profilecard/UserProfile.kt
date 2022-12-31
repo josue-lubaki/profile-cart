@@ -7,4 +7,8 @@ val userProfileList = arrayListOf(
     UserProfile("Anna Smith", false, R.drawable.profile_woman),
     UserProfile("John Doe", true, R.drawable.profile_man),
     UserProfile("Sarah Jordan", true, R.drawable.profile_girl),
+    UserProfile("kevin Lubaki", false, R.drawable.profile_boy),
+    UserProfile("Deborah Scoot", true, R.drawable.profile_woman),
+    UserProfile("Paul Doe", false, R.drawable.profile_man),
+    UserProfile("Chantal Belanger", false, R.drawable.profile_girl),
 )
