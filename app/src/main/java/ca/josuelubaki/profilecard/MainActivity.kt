@@ -16,11 +16,16 @@ import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.Card
 import androidx.compose.material.ContentAlpha
+import androidx.compose.material.Icon
 import androidx.compose.material.LocalContentAlpha
 import androidx.compose.material.LocalTextStyle
 import androidx.compose.material.MaterialTheme
+import androidx.compose.material.Scaffold
 import androidx.compose.material.Surface
 import androidx.compose.material.Text
+import androidx.compose.material.TopAppBar
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Home
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.ui.Alignment
@@ -30,7 +35,6 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import ca.josuelubaki.profilecard.ui.theme.LightGreen200
 import ca.josuelubaki.profilecard.ui.theme.ProfileCardTheme
 import ca.josuelubaki.profilecard.ui.theme.lightGreen
 
@@ -58,11 +62,31 @@ fun Greeting(name: String) {
 
 @Composable
 fun MainScreen() {
-    Surface(
-        modifier = Modifier.fillMaxSize(),
+    Scaffold(
+        topBar = { AppBar() }
     ) {
-        ProfileCard()
+        Surface(
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(it),
+        ) {
+            ProfileCard()
+        }
     }
+}
+
+@Composable
+fun AppBar() {
+    TopAppBar(
+        navigationIcon = {
+            Icon(
+                imageVector = Icons.Default.Home,
+                contentDescription = "Home",
+                modifier = Modifier.padding(12.dp)
+            )
+         },
+        title = { Text("Application Users")}
+    )
 }
 
 @Composable

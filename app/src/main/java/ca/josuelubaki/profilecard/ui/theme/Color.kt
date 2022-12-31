@@ -10,6 +10,7 @@ val Purple700 = Color(0xFF3700B3)
 val Teal200 = Color(0xFF03DAC5)
 val LightGray = Color(0xFFE0E0E0)
 val LightGreen200 = Color(0x9932CD32)
+val Green = Color(0xFF196D19)
 
 val Colors.lightGreen: Color
     @Composable
