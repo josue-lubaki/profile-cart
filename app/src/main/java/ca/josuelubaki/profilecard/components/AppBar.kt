@@ -1,5 +1,6 @@
 package ca.josuelubaki.profilecard.components
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.Icon
 import androidx.compose.material.Text
@@ -8,19 +9,22 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Home
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.unit.dp
 
 
 @Composable
-fun AppBar() {
+fun AppBar(title : String, icon : ImageVector, iconClickAction : () -> Unit = {}) {
     TopAppBar(
         navigationIcon = {
             Icon(
-                imageVector = Icons.Default.Home,
-                contentDescription = "Home",
-                modifier = Modifier.padding(12.dp)
+                imageVector = icon,
+                contentDescription = title,
+                modifier = Modifier
+                    .padding(12.dp)
+                    .clickable { iconClickAction.invoke() }
             )
         },
-        title = { Text("Application Users") }
+        title = { Text(title) }
     )
 }
