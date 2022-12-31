@@ -34,11 +34,13 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import ca.josuelubaki.profilecard.ui.theme.ProfileCardTheme
 import ca.josuelubaki.profilecard.ui.theme.lightGreen
+import coil.compose.rememberAsyncImagePainter
+import coil.request.ImageRequest
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -91,7 +93,7 @@ fun AppBar() {
 
 @Composable
 fun ProfileCard(userProfile : UserProfile) {
-    val (name, status, drawable) = userProfile
+    val (name, status, pictureUrl) = userProfile
 
     Card(
         modifier = Modifier
@@ -106,14 +108,14 @@ fun ProfileCard(userProfile : UserProfile) {
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.Start
         ) {
-            ProfilePicture(drawable, status)
+            ProfilePicture(pictureUrl, status)
             ProfileContent(name, status)
         }
     }
 }
 
 @Composable
-fun ProfilePicture(drawableId : Int, onlineStatus : Boolean) {
+fun ProfilePicture(pictureUrl : String, onlineStatus : Boolean) {
     Card(
         shape = CircleShape,
         border= BorderStroke(
@@ -125,12 +127,24 @@ fun ProfilePicture(drawableId : Int, onlineStatus : Boolean) {
         modifier = Modifier.padding(16.dp),
         elevation = 4.dp
     ) {
+
         Image(
-            painter = painterResource(id = drawableId),
-            contentDescription = "content description",
+            painter = rememberAsyncImagePainter(pictureUrl),
+            contentDescription = "Profile Picture",
             modifier = Modifier.size(72.dp),
-            contentScale = ContentScale.Crop
+            contentScale = ContentScale.Crop,
         )
+
+        /* AsyncImage(
+            model = ImageRequest.Builder(LocalContext.current)
+                .data(pictureUrl)
+                .crossfade(true)
+                .build(),
+            placeholder = painterResource(R.drawable.profile_woman),
+            contentDescription = "Profile Picture",
+            contentScale = ContentScale.Crop,
+            modifier = Modifier.size(72.dp).clip(CircleShape)
+        ) */
     }
 }
 
